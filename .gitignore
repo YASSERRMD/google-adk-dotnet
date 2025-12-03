@@ -1,0 +1,11 @@
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.userosscache
+*.sln.docstates
+TestResult*/
+.vs/
+*.ncrunch*
+_ReSharper*/
