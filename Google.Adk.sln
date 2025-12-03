@@ -8,6 +8,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Adk.Cli", "src/Googl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Adk.Tests", "tests/Google.Adk.Tests/Google.Adk.Tests.csproj", "{FB749E17-027F-4694-AC15-28E0090DB4F5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Google.Adk.Runtime", "src/Google.Adk.Runtime/Google.Adk.Runtime.csproj", "{0B2068C6-E035-4CEC-9D41-6DD2CFB9515B}"
+EndProject
 Global
 GlobalSection(SolutionConfigurationPlatforms) = preSolution
 Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ GlobalSection(ProjectConfigurationPlatforms) = postSolution
 {F813CEEC-3623-4406-8E26-BF6CA59EDFB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {F813CEEC-3623-4406-8E26-BF6CA59EDFB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 {F813CEEC-3623-4406-8E26-BF6CA59EDFB3}.Release|Any CPU.Build.0 = Release|Any CPU
+{0B2068C6-E035-4CEC-9D41-6DD2CFB9515B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+{0B2068C6-E035-4CEC-9D41-6DD2CFB9515B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+{0B2068C6-E035-4CEC-9D41-6DD2CFB9515B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+{0B2068C6-E035-4CEC-9D41-6DD2CFB9515B}.Release|Any CPU.Build.0 = Release|Any CPU
 {FB749E17-027F-4694-AC15-28E0090DB4F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 {FB749E17-027F-4694-AC15-28E0090DB4F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 {FB749E17-027F-4694-AC15-28E0090DB4F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
