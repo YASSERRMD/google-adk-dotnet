@@ -172,7 +172,7 @@ public class AdkVerifierTests
         {
             var serial = Guid.NewGuid().ToByteArray();
             certificate = request.Create(
-                issuer,
+                issuer.SubjectName,
                 X509SignatureGenerator.CreateForRSA(issuerKey!, RSASignaturePadding.Pkcs1),
                 notBefore,
                 notAfter,
