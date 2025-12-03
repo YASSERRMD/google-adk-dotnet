@@ -137,19 +137,20 @@ public class AdkVerifierTests
         out RSA leafKey)
     {
         using var rootKey = RSA.Create(2048);
-        root = CreateCertificate("CN=ADK Root", rootKey, null, true, TimeSpan.FromDays(3650));
+        root = CreateCertificate("CN=ADK Root", rootKey, null, null, true, TimeSpan.FromDays(3650));
 
         using var intermediateKey = RSA.Create(2048);
-        intermediate = CreateCertificate("CN=ADK Intermediate", intermediateKey, root, true, TimeSpan.FromDays(1825));
+        intermediate = CreateCertificate("CN=ADK Intermediate", intermediateKey, root, rootKey, true, TimeSpan.FromDays(1825));
 
         leafKey = RSA.Create(2048);
-        leaf = CreateCertificate("CN=ADK Leaf", leafKey, intermediate, false, TimeSpan.FromDays(365));
+        leaf = CreateCertificate("CN=ADK Leaf", leafKey, intermediate, intermediateKey, false, TimeSpan.FromDays(365));
     }
 
     private static X509Certificate2 CreateCertificate(
         string subject,
         RSA key,
         X509Certificate2? issuer,
+        RSA? issuerKey,
         bool isCa,
         TimeSpan validity)
     {
@@ -162,12 +163,22 @@ public class AdkVerifierTests
         var notBefore = DateTimeOffset.UtcNow.AddDays(-1);
         var notAfter = notBefore + validity;
 
+        X509Certificate2 certificate;
         if (issuer is null)
         {
-            return request.CreateSelfSigned(notBefore, notAfter);
+            certificate = request.CreateSelfSigned(notBefore, notAfter);
+        }
+        else
+        {
+            var serial = Guid.NewGuid().ToByteArray();
+            certificate = request.Create(
+                issuer.SubjectName,
+                X509SignatureGenerator.CreateForRSA(issuerKey!, RSASignaturePadding.Pkcs1),
+                notBefore,
+                notAfter,
+                serial);
         }
 
-        var serial = Guid.NewGuid().ToByteArray();
-        return request.Create(issuer, notBefore, notAfter, serial);
+        return certificate.CopyWithPrivateKey(key);
     }
 }
