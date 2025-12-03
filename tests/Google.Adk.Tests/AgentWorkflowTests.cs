@@ -121,11 +121,8 @@ public class AgentWorkflowTests
         var history = await memory.GetSessionAsync("session-5");
         Assert.Equal(4, history.Count);
     }
-}
 
-file static class ModelStubs
-{
-    public sealed class StubToolCallingModel : IChatModelClient
+    private sealed class StubToolCallingModel : IChatModelClient
     {
         public Task<ChatModelResponse> GenerateAsync(IEnumerable<AgentMessage> history, CancellationToken cancellationToken = default)
         {
