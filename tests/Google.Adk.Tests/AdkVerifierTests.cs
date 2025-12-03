@@ -179,6 +179,8 @@ public class AdkVerifierTests
                 serial);
         }
 
-        return certificate.CopyWithPrivateKey(key);
+        // Certificates created with CertificateRequest already have an associated private key.
+        // Only attach the key when necessary to avoid InvalidOperationException.
+        return certificate.HasPrivateKey ? certificate : certificate.CopyWithPrivateKey(key);
     }
 }
